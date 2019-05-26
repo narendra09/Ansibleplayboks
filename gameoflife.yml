@@ -22,7 +22,7 @@
   - name: setting catalina_home variable
     command: chdir=/home/jenkins echo "export CATALINA_HOME="/home/ansible/tomcat8"" >> ~/.bashr
   - name: installing zip package
-    yum:
+    package:
       name: unzip
       state: present
   - name: downloading application into machine
