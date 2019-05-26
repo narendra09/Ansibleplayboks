@@ -16,7 +16,7 @@
   - name: extractiving archive
     command: chdir=/home/jenkins tar xvf apache-tomcat-8.5.41.tar.gz creates=apache-tomcat-8.5.41
   - name: renaming folder to tomcat8
-    command: mv apache-tomcat-8.5.41 tomcat8 creates=tomcat8
+    command: mv apache-tomcat-8.5.41 tomcat8
   - name: Change ownership of Tomcat installation
     file: path=/home/jenkins/tomcat8 owner=tomcat group=tomcat state=directory recurse=yes
   - name: setting catalina_home variable
