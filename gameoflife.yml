@@ -7,7 +7,7 @@
     user: name=tomcat group=tomcat createhome=yes
   - name: installing java
     package:
-      name: java-1.8.0
+      name: openjdk-8-jdk
       state: present
   - name: installing tomcat
     get_url:
