@@ -5,6 +5,6 @@ node('ansible')
            }
     stage('runshell')
          	{
-			sh '/home/jenkins/workspace/pipelineansible/ansibleinstall.sh'
+			sh 'sudo /home/jenkins/workspace/pipelineansible/ansibleinstall.sh'
 			}
 }
