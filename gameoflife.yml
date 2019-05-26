@@ -1,0 +1,35 @@
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: add group "tomcat"
+    group: name=tomcat
+  - name: add user "tomcat"
+    user: name=tomcat group=tomcat createhome=yes
+  - name: installing java
+    package:
+      name: java-1.8.0
+      state: present
+  - name: installing tomcat
+    get_url:
+      url: http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.39/bin/apache-tomcat-8.5.39.tar.gz
+      dest: /home/jenkins
+  - name: extractiving archive
+    command: chdir=/home/jenkins tar xvf apache-tomcat-8.5.39.tar.gz creates=apache-tomcat-8.5.39
+  - name: renaming folder to tomcat8
+    command: mv apache-tomcat-8.5.39 tomcat8 creates=tomcat8
+  - name: Change ownership of Tomcat installation
+    file: path=/home/jenkins/tomcat8 owner=tomcat group=tomcat state=directory recurse=yes
+  - name: setting catalina_home variable
+    command: chdir=/home/jenkins echo "export CATALINA_HOME="/home/ansible/tomcat8"" >> ~/.bashr
+  - name: installing zip package
+    yum:
+      name: unzip
+      state: present
+  - name: downloading application into machine
+    get_url:
+      url: https://github.com/QT-DevOps/DevOpsIssues/files/2130588/gameoflife.zip
+      dest: /home/jenkins
+  - name: unzzipping zip file and deploying into webapps
+    command: chdir=/home/jenkins unzip gameoflife.zip -d /home/ansible/tomcat8/webapps
+  - name: starting tomcat
+    command: nohup /home/jenkins/tomcat8/bin/startup.sh
