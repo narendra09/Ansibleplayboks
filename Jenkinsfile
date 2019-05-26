@@ -5,6 +5,7 @@ node('ansible')
            }
     stage('runshell')
          	{
+			sh 'pwd'
 			sh 'sudo /home/jenkins/workspace/pipelineansible/ansibleinstall.sh'
 			}
 }
