@@ -11,12 +11,12 @@
       state: present
   - name: installing tomcat
     get_url:
-      url: http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.39/bin/apache-tomcat-8.5.39.tar.gz
+      url: http://us.mirrors.quenda.co/apache/tomcat/tomcat-8/v8.5.41/bin/apache-tomcat-8.5.41.tar.gz
       dest: /home/jenkins
   - name: extractiving archive
-    command: chdir=/home/jenkins tar xvf apache-tomcat-8.5.39.tar.gz creates=apache-tomcat-8.5.39
+    command: chdir=/home/jenkins tar xvf apache-tomcat-8.5.41.tar.gz creates=apache-tomcat-8.5.41
   - name: renaming folder to tomcat8
-    command: mv apache-tomcat-8.5.39 tomcat8 creates=tomcat8
+    command: mv apache-tomcat-8.5.41 tomcat8 creates=tomcat8
   - name: Change ownership of Tomcat installation
     file: path=/home/jenkins/tomcat8 owner=tomcat group=tomcat state=directory recurse=yes
   - name: setting catalina_home variable
